@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="pl">
+<head>
+	<meta charset="utf-8" />
+	<title>Cost application</title>
+	<meta name="description" content="Template for cost app" />
+	<meta name="keywords" content="Cost statistics" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	
+	<link rel="stylesheet" href="style.css" type="text/css"/>
+	<link rel="stylesheet" href="style2.css" type="text/css"/>
+	<link rel="stylesheet" href="css/fontello.css" type="text/css"/>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+	
+</head>
+
+<body>
+	<header>
+		<nav>
+			<ul class="menu">
+				<li><a href="index.html"><i class="icon-home"></i>Home</a></li>
+				<li><a href="stats.html"><i class="icon-chart-bar"></i>Stats</a></li>
+				<li><a href="other.html"><i class="icon-chart-area"></i>Other</a>
+			</ul>
+		</nav>
+	</header>
+	
+	<main>
+		<div class="content">
+			<header>
+				<h1>Other</h1>
+				
+					<div class="containerUpper">
+						<span class="label">Bieżąca kwota faktury: </span> <span class="label cost">{{ current_fvcost }}</span>
+					</div>
+
+					<div class="containerTab">
+						<!-- Table markup-->
+						<table id="tab1" class="tab1" align="center">
+							<!-- Table header -->
+							<thead>
+								<tr>
+									<th scope="col" id="1" width="160">User</th>
+									<th scope="col" id="2" width="160">Current month</th>
+									<th scope="col" id="3" width="160" text-align="right">Current cost [zł]</th>
+								</tr>
+							</thead>
+							 <!-- Table footer -->
+								  <tfoot>
+										<tr>
+										</tr>
+								  </tfoot>
+							 <!-- Table body -->
+								<tbody>
+									
+									{% for user in exp_data %}
+										<tr>
+											<td>
+												{{ user['name'] }}
+											</td>
+											<td  align="center">
+												{{ user['date'] }}
+											</td>
+											<td align="right">
+												{{ user['cost'] }}
+											</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+						</table>
+					</div>
+			</header>
+		</div>
+	</main>
+	
+	<footer>
+	
+	</footer>
+	
+	<script src="jquery-3.3.1.min.js"></script>
+	
+	<script>
+
+	$(document).ready(function() {
+	var NavY = $('nav').offset().top;
+	var i = 1;
+	 
+	var stickyNav = function(){
+	var ScrollY = $(window).scrollTop();
+		  
+	if (ScrollY > NavY) {
+		$('nav').addClass('sticky');
+	} else {
+		$('nav').removeClass('sticky'); 
+	}
+		if (i == 1) {
+			<!--alert( 'Hello everyone!' );>
+			i = i + 1;
+		}
+	};
+	 
+	stickyNav();
+	 
+	$(window).scroll(function() {
+		stickyNav();
+	});
+	});
+	
+	</script>
+
+</body>
+</html>
