@@ -39,8 +39,8 @@ def stats():
     return render_template('stats.html', user_data=users_data, exp_data=user_data_all)
 
 
-@app.route('/expenses', methods=['GET'])
-def expenses():
+@app.route('/others', methods=['GET'])
+def others():
     users_data = Users().select()
 
     for name in users_data:
@@ -49,4 +49,4 @@ def expenses():
         #flash('Brak pytań w bazie.', 'kom')
         #return redirect(url_for('index'))
 
-    return render_template('expenses.html')
+    return render_template('others.html')
