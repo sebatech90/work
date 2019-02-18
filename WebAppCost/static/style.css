@@ -68,6 +68,7 @@ ul > li > ul > li {
 	text-align: center;
 	color: grey;
 	text-align: justify;
+	background-color: red;
 }
 
 h1 {
@@ -77,6 +78,7 @@ h1 {
 footer {
 	height: 50px;
 	background-color: black;
+	clear: both;
 }
 
 .sticky {

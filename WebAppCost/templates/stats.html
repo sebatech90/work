@@ -29,52 +29,92 @@
 		<div class="content">
 			<header>
 				<h1>Stats</h1>
+				<div class="containerRight">
+					<table class="tab1" style="width:100%;" align="center">
+						<!-- Table header -->
+						<thead>
+							<tr>
+								<th scope="col" id="1" width="160">User</th>
+								<th scope="col" id="2" width="160">Current month</th>
+								<th scope="col" id="3" width="160" text-align="right">Current cost [zł]</th>
+							</tr>
+						</thead>
+						 <!-- Table footer -->
+							  <tfoot>
+									<tr>
+									</tr>
+							  </tfoot>
+						 <!-- Table body -->
+							<tbody>
+								
+								{% for user in exp_data %}
+									<tr>
+										<td>
+											{{ user['name'] }}
+										</td>
+										<td  align="center">
+											{{ user['date'] }}
+										</td>
+										<td align="right">
+											{{ user['cost'] }}
+										</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+					</table>
+				</div>
 				
-					<div class="containerUpper">
-						<span class="label">Bieżąca kwota faktury: </span> <span class="label cost">{{ current_fvcost }}</span>
+				<div style="height: 30px; background: blue;">
+										<form method="POST"  action="{{ url_for('stats') }}">
+							<div>
+								<label for="cost">Enter expense</label>
+							</div>
+							<div>
+								<input type="number" id="cost" name="Cost" value="" min=0 placeholder="Current cost..."/>
+							</div>
+							<div>
+								<label for="user">Select user</label>
+							</div>
+							<div>
+								<select id="user" name="User">
+								<option value="2">Damian</option>
+								<option value="1">Mateusz</option>
+								<option value="3">Wojtek</option>
+							</div>
+							<input type="submit" value="Save">
+						</form>
+				
+				</div>
+				
+				<div>
+					<div style="height: 300px;">
+						<form method="POST"  action="{{ url_for('stats') }}">
+							<div>
+								<label for="cost">Enter expense</label>
+							</div>
+							<div>
+								<input type="number" id="cost" name="Cost" value="" min=0 placeholder="Current cost..."/>
+							</div>
+							<div>
+								<label for="user">Select user</label>
+							</div>
+							<div>
+								<select id="user" name="User">
+								<option value="2">Damian</option>
+								<option value="1">Mateusz</option>
+								<option value="3">Wojtek</option>
+							</div>
+							<input type="submit" value="Save">
+						</form>
 					</div>
+				</div>
+				
 
-					<div class="containerTab">
-						<!-- Table markup-->
-						<table id="tab1" class="tab1" align="center">
-							<!-- Table header -->
-							<thead>
-								<tr>
-									<th scope="col" id="1" width="160">User</th>
-									<th scope="col" id="2" width="160">Current month</th>
-									<th scope="col" id="3" width="160" text-align="right">Current cost [zł]</th>
-								</tr>
-							</thead>
-							 <!-- Table footer -->
-								  <tfoot>
-										<tr>
-										</tr>
-								  </tfoot>
-							 <!-- Table body -->
-								<tbody>
-									
-									{% for user in exp_data %}
-										<tr>
-											<td>
-												{{ user['name'] }}
-											</td>
-											<td  align="center">
-												{{ user['date'] }}
-											</td>
-											<td align="right">
-												{{ user['cost'] }}
-											</td>
-										</tr>
-									{% endfor %}
-								</tbody>
-						</table>
-					</div>
 			</header>
 		</div>
 	</main>
 	
 	<footer>
-	
 	</footer>
 	
 	<script src="{{url_for('static', filename='jquery-3.3.1.min.js')}}"></script>
